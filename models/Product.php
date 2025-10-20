@@ -1,6 +1,6 @@
 <?php
 
-class productos {
+class product {
     private $id;
     private $name;
     private $description;
@@ -32,7 +32,7 @@ class productos {
         return $this->stock;
     }
 
-    
+
 }
 
 ?>

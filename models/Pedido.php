@@ -2,8 +2,8 @@
 
 class pedido{
     private $id;
-    private $productId
-    private $userId
+    private $productId;
+    private $userId;
 
     public function __construct($id, $productId, $userId){
         $this->id = $id;
