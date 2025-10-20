@@ -20,26 +20,19 @@ class productos {
         return $this->id;
     }
 
-    public function getTitulo() {
-        return $this->titulo;
+    public function getName() {
+        return $this->name;
     }
 
-    public function getContenido() {
-        return $this->contenido;
+    public function getDescription() {
+        return $this->description;
     }
 
-    public function getFechaCreacion() {
-        return $this->creado_en;
+    public function getStock() {
+        return $this->stock;
     }
 
-    public function getUsuarioId() {
-        return $this->user_id;
-    }
-
-
-    public function getUltimaActividad() {
-        return $this->ultima_actividad;
-    }
+    
 }
 
 ?>

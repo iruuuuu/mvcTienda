@@ -9,7 +9,7 @@ class users {
 
 
     // Constructor
-    public function __construct($id, $username, $password, $email, $role) {
+    public function __construct($id, $username, $password, $avatar, $rol) {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;
