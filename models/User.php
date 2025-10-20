@@ -3,16 +3,14 @@
 class user {
     private $id;
     private $username;
-    private $password;
     private $avatar;
     private $rol;
 
 
     // Constructor
-    public function __construct($id, $username, $password, $avatar, $rol) {
+    public function __construct($id, $username, $avatar, $rol) {
         $this->id = $id;
         $this->username = $username;
-        $this->password = $password;
         $this->avatar = $avatar;
         $this->rol = $rol;
     }
@@ -26,10 +24,6 @@ class user {
         return $this->username;
     }
 
-    public function getPassword() {
-        return $this->password;
-    }
-
     public function getAvatar() {
         return $this->avatar;
     }
@@ -40,7 +34,7 @@ class user {
 
     // Metodo para verificar si es administrador
     public function isAdmin() {
-        return $this->rol == 'admin';
+        return $this->rol == 1;
     }
 
 }
