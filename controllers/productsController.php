@@ -51,6 +51,15 @@ if(isset($_GET['register'])){
     exit();
 }
 
+//añadir producto a "carrito"
+if(isset($_GET['productId'])){
+    $productId = $_GET['productId'];
+    $userId = $_SESSION['user']->getId();
+    PedidoRepository::addPedido($productId, $userId);
+    header('location:index.php');
+    exit();
+}
+
 // Show product list
 $products = ProductsRepository::getProduct(); 
 require_once 'views/productView.phtml';
