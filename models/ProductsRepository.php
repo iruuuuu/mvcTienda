@@ -45,7 +45,7 @@ public static function addProduct( $name, $description, $stock, $price, $imagen)
 public static function deleteProduct($id) {
     if (self::isUserAdmin()) {
         $db = Connection::connect();
-        $q = "DELETE FROM post WHERE id=" . $id;
+        $q = "DELETE FROM products WHERE id=" . $id;
         if ($result = $db->query($q))
             return true;
         else
