@@ -1,21 +1,37 @@
 <?php
-require_once('models/User.php');
-require_once('models/UserRepository.php');
 
-
-
-session_start();
-
-if (isset($_GET['c'])) {
-    require_once('controllers/' . $_GET['c'] . 'Controller.php');
+// Delete Subject
+if(isset($_GET['delete'])){
+     SubjectRepository::deleteSubject($_GET['delete']);
+     header('location:index.php');
+     exit();
 }
 
-if (!isset($_SESSION['user'])) {
-    require_once 'views/loginView.phtml';
-    die();
+// Add new Subject
+if(isset($_POST["title"]) && isset($_POST["content"])){
+     $title = $db->real_escape_string($_POST['title']);
+     $content = $db->real_escape_string($_POST['content']);
+     $authorId = $_SESSION['user']->getId();
+     $SubjectId = SubjectRepository::addSubject($title, $content, $authorId);
+     header('location:index.php?c=Subject&id=' . $SubjectId);
+     exit();
 }
 
-//si ha iniciado sesión
+// Show new Subject form
+if(isset($_GET["newSubject"])){
+     require_once("views/newSubject.phtml");
+     exit();
+}
 
-// cargar la vista
-require_once 'views/productView.phtml';
+// Show single Subject
+if(isset($_GET['id'])){
+     $Subject = SubjectRepository::getSubjectById($_GET['id']);
+     require_once 'views/showSubject.phtml';
+     exit();
+}
+// Show Subject list
+else {
+     $Subjects = SubjectRepository::getSubjects();
+     require_once 'views/mainView.phtml';
+     exit();
+}
