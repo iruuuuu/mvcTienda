@@ -18,7 +18,7 @@ class userRepository{
       $db = Connection::connect();
       $q='INSERT INTO users (username, password, avatar, role) VALUES ("'.$_POST['username'].'", "'.md5($_POST['password']).'", "'.$_POST['avatar'].'", "'.  (int)0  .'")';
         if($db->query($q)){
-            $_SESSION['user'] = new User($db->insert_id, $_POST['username'], 0);
+            $_SESSION['user'] = new User($db->insert_id, $_POST['username'], $_POST['avatar'], 0);
          } else {
             echo "Error: could not register user.";
          }

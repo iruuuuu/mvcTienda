@@ -16,7 +16,7 @@ class pedidoRepository{
     public static function addPedido($productId, $userId){
         $db = connection::connect();
         $q = "INSERT INTO pedido (productId, userId) VALUES ($productId, $userId)";
-       if ($result = $db->query($q)) {
+        if ($result = $db->query($q)) {
             return $db->insert_id;
         }
         return false;
