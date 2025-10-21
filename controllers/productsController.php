@@ -32,8 +32,7 @@ if(isset($_GET["newProduct"])){
 //}
 
 // Show product list
-else {
-    $Products = ProductsRepository::getProduct();
-    require_once 'views/productView.phtml';
-    exit();
-}
+
+$products = ProductsRepository::getProduct(); 
+require_once 'views/productView.phtml';
+exit();

@@ -1,25 +1,14 @@
-require_once('models/Product.php');
-require_once('models/ProductosRepository.php');
-require_once('models/User.php');
-require_once('models/UserRepository.php');
-require_once('models/Pedido.php');
-require_once('models/PedidoRepository.php');
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
+    <?php var_dump($products); ?>
+   
 </head>
 <body>
     <h2>Productos</h2>
-    <?php 
-    if (!isset($products)) {
-        $products = [];
-    }
-    ?>
-    
     <?php if (count($products) > 0): ?>
         <?php foreach ($products as $product): ?>
             <div style="border: 1px solid #6c6c6cff; padding: 10px; margin: 10px 0;">
