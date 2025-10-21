@@ -7,29 +7,15 @@
 </head>
 <body>
     
-<h1>crear Producto</h1>
+<h1>Crear producto</h1>
 
-<form action="index.php?c=products&createProduct=1" method="post">
-  
-  <label for="name">Nombre del producto:</label><br>
-  <input type="text" id="name" name="name" required><br><br>
-
-  <label for="description">Descripción:</label><br>
-  <textarea id="description" name="description" required></textarea><br><br>
-
-  <label for="stock">Stock disponible:</label><br>
-  <input type="number" id="stock" name="stock" min="0" required><br><br>
-
-  <label for="precio">Precio (€):</label><br>
-  <input type="number" id="precio" name="precio" step="0.01" min="0" required><br><br>
-
-  <label for="imagen">Imagen (URL o nombre de archivo):</label><br>
-  <input type="file" id="imagen" name="imagen" placeholder="ej: producto1.jpg" required><br><br>
-
-  <input type="submit" value="Guardar producto">
-</form>
-
-
+<form action="index.php?c=products&createProduct=1" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Nombre del producto" required>
+    <input type="text" name="description" placeholder="Descripción" required>
+    <input type="number" name="stock" placeholder="Stock" min="0" required>
+    <input type="number" name="precio" placeholder="Precio (€)" step="0.01" min="0" required>
+    <input type="file" name="imagen" required>
+    <input type="submit" value="Guardar producto">
 </form>
 
 </body>
