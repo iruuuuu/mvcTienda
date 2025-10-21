@@ -24,15 +24,16 @@ if(isset($_GET["newProduct"])){
     exit();
 }
 
-// Show single Subject
-if(isset($_GET['id'])){
-    $Subject = ProductsRepository::getProductById($_GET['id']);
-    require_once 'views/showSubject.phtml';
-    exit();
-}
+// // Show single Subject
+// if(isset($_GET['id'])){
+//     $Subject = ProductsRepository::getProductById($_GET['id']);
+//     require_once 'views/showProduct.phtml';
+//     exit();
+//}
+
 // Show Subject list
 else {
     $Products = ProductsRepository::getProduct();
-    require_once 'views/index.phtml';
+    require_once 'index.php';
     exit();
 }
