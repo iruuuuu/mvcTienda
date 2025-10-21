@@ -24,9 +24,10 @@
             <div style="border: 1px solid #6c6c6cff; padding: 10px; margin: 10px 0;">
                 <h3><?php echo htmlspecialchars($product->getName()); ?></h3>
                 <p><strong>Descripción:</strong> <?php echo htmlspecialchars($product->getDescription()); ?></p>
-                <p><strong>Stock:</strong> <?php echo htmlspecialchars($product->getStock()); ?></p>
+                <!-- AQUI PONER LA IMAGEN -->
                 <!-- Agrega aquí cualquier otra información relevante del producto -->
-                
+                <p><strong>Stock:</strong> <?php echo htmlspecialchars($product->getStock()); ?></p>
+                <p><strong>Precio:</strong> <?php echo htmlspecialchars($product->getPrice()); ?>€</p>
                 <?php 
                 if (isset($_SESSION['user']) && is_object($_SESSION['user'])): 
                     if ($_SESSION['user']->isAdmin()):
