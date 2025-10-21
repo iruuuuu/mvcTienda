@@ -14,9 +14,9 @@
 
     <?php if ($_SESSION['user']->getAvatar()) {
         $img = $_SESSION['user']->getAvatar();
-    } else $img = "avatar.jpg";
+    } else $img = "default.jpg";
 
-    echo '<img src="public/img/' . $img . '" width="50px">';
+    echo '<img src="public/users/' . $img . '" width="50px">';
     ?>
 
     Edita tu avatar:<br>

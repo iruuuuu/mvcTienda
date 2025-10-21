@@ -54,7 +54,7 @@ if (isset($_GET['edit'])) {
 if (isset($_GET['setAvatar'])) {
     if (isset($_FILES['avatar'])) {
 
-        if (FileHelper::fileHandler($_FILES['avatar']['tmp_name'], 'public/img/' . $_FILES['avatar']['name'])) {
+        if (FileHelper::fileHandler($_FILES['avatar']['tmp_name'], 'public/users/' . $_FILES['avatar']['name'])) {
 
             $_SESSION['user']->setAvatar($_FILES['avatar']['name']);
         }
