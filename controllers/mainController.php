@@ -23,8 +23,8 @@ if(isset($_GET['c'])){
 }
 else {
     if(!($_SESSION['user'])){
-    require_once('controllers/productosController.php');}
+    require_once('controllers/productsController.php');}
     else {
-        require_once('controllers/productosController.php');
+        require_once('controllers/productsController.php');
     }
 }
