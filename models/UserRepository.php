@@ -6,7 +6,7 @@ class userRepository{
    //Tomar usuario por id
    public static function getUserByID($id) {
       $db = Connection::connect();
-      $q = "SELECT id, username, role FROM users WHERE id = $id";
+      $q = "SELECT id, username, avatar, role FROM users WHERE id = $id";
       $result = $db->query($q);
       if($row = $result->fetch_assoc()){
          return new User($row['id'], $row['username'], $row['avatar'], $row['role'],);
@@ -14,9 +14,9 @@ class userRepository{
    }
 
    //Crear usuario
-   public static function createUser($username, $password, $role) {
+   public static function createUser($username, $password, $role, $avatar) {
       $db = Connection::connect();
-      $q='INSERT INTO users (username, password, avatar, role) VALUES ("'.$_POST['username'].'", "'.md5($_POST['password']).'", "'.ç$_POST['avatar'].'", "'.  (int)0  .'")';
+      $q='INSERT INTO users (username, password, avatar, role) VALUES ("'.$_POST['username'].'", "'.md5($_POST['password']).'", "'.$_POST['avatar'].'", "'.  (int)0  .'")';
         if($db->query($q)){
             $_SESSION['user'] = new User($db->insert_id, $_POST['username'], 0);
          } else {
