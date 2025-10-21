@@ -6,17 +6,18 @@
     <title>Productos</title>
 <?php
  if($_SESSION['user']){
-        echo  '<h3>Hola '.$_SESSION['user']->getUsername().'. <a href="index.php?c=user&logout=1">Salir</a></h3><br>
-       <h3><a href="index.php?c=products&newProduct=1">Crear Producto</a><br></h3>';
-
-       echo '<a href="index.php?c=user&edit=1">Panel de usuario</a><br>';
-
-    if ($_SESSION['user']->getAvatar()) {
+        if ($_SESSION['user']->getAvatar()) {
         $img = $_SESSION['user']->getAvatar();
     } else $img = "avatar.jpg";
 
-    echo '<img src="public/users/' . $img . '" width="50px">';
-    echo '<br>';
+    // Mostramos la imagen y el saludo en la misma línea, dentro del mismo H3
+    echo '<h3><img src="public/users/' . $img . '" width="50px" style="vertical-align: middle; margin-right: 10px;">' .
+         'Hola '.$_SESSION['user']->getUsername().'. <a href="index.php?c=user&logout=1">Salir</a></h3>';
+    echo '<h3>
+    
+       <a href="index.php?c=products&newProduct=1">Crear Producto</a><br></h3>';
+
+       echo '<a href="index.php?c=user&edit=1">Panel de usuario</a><br>';
 
     }else{
         echo '<a href="index.php?c=user&register=1">registrarse</a><br>';
