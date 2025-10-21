@@ -34,6 +34,11 @@ if (isset($_GET['c']) && $_GET['c'] == 'user' && isset($_GET['register'])) {
     require_once('views/registerView.phtml');
     exit;
 }
+//vista login
+if (isset($_GET['c']) && $_GET['c'] == 'user' && isset($_GET['login'])) {
+    require_once('views/loginView.phtml');
+    exit;
+}
 
 //vista por defecto
 if(!$_SESSION['user']){
