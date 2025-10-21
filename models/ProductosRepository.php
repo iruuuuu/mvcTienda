@@ -10,30 +10,50 @@ class ProductosRepository{
         return null;
     }
 
-    public static function getProduct() {
+
+private static function isUserAdmin() {
+    if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->isAdmin()) {
+        return true;
+    }
+    return false;
+}
+
+public static function getProduct() {
+    if (self::isUserAdmin()) {
         $db = Connection::connect();
         $q = 'SELECT * FROM post ORDER BY created_at DESC';
         $result = $db->query($q);
-        $product = array();
+        $products = array();
         while ($row = $result->fetch_assoc()) {
-            $product[] = new product($row['id'], $row['title'], $row['created_at'], $row['text'], $row['author'], $row['user_id']);
+            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['stock']);
         }
-        return $product;
+        return $products;
     }
+    return array();
+}
 
-    public static function addPost($title, $text, $author, $user_id) {
+public static function addProduct($id, $name, $description, $stock) {
+    if (self::isUserAdmin()) {
         $db = Connection::connect();
-        $date = date('Y-m-d H:i:s');
-        $q = "INSERT INTO post VALUES (NULL, '" . $title . "', '" . $date . "', '" . $text . "', '" . $author . "', " . $user_id . ")";
+        $q = "INSERT INTO product  VALUES ( NULL, '" . $name . "', '" . $description . "', '" . $stock . "')";
         if ($result = $db->query($q))
             return $db->insert_id;
         else
             return false;
     }
+    return false;
+}
 
-    public static function deletePost($id) {
+public static function deleteProduct($id) {
+    if (self::isUserAdmin()) {
         $db = Connection::connect();
-        $q = 'DELETE FROM post WHERE id=' . $id;
-        return $db->query($q);
+        $q = "DELETE FROM post WHERE id=" . $id;
+        if ($result = $db->query($q))
+            return true;
+        else
+            return false;
     }
+    return false;
+}
+
 }
