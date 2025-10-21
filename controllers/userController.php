@@ -45,3 +45,19 @@ if(!$_SESSION['user']){
     require_once('views/productView.phtml');
     exit;
 }
+
+if (isset($_GET['edit'])) {
+    require_once 'views/editUserView.phtml';
+    die();
+}
+
+if (isset($_GET['setAvatar'])) {
+    if (isset($_FILES['avatar'])) {
+
+        if (FileHelper::fileHandler($_FILES['avatar']['tmp_name'], 'public/img/' . $_FILES['avatar']['name'])) {
+
+            $_SESSION['user']->setAvatar($_FILES['avatar']['name']);
+        }
+        header('Location: index.php?c=user&edit=1');
+    }
+}

@@ -36,6 +36,15 @@ class userRepository{
          return false;
       }
    }
+
+   public static function setAvatar($avatar, $user)
+   {
+        $db = Connection::connect();
+        $q = "UPDATE users SET avatar = '" . $avatar . "' WHERE id = " . $user->getId();
+        $db->query($q);
+
+        return $db->affected_rows;
+   }
    
    
 }    

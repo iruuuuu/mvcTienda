@@ -8,6 +8,16 @@
  if($_SESSION['user']){
         echo  '<h3>Hola '.$_SESSION['user']->getUsername().'. <a href="index.php?c=user&logout=1">Salir</a></h3><br>
        <h3><a href="index.php?c=products&newProduct=1">Crear Producto</a><br></h3>';
+
+       echo '<a href="index.php?c=user&edit=1">Panel de usuario</a><br>';
+
+    if ($_SESSION['user']->getAvatar()) {
+        $img = $_SESSION['user']->getAvatar();
+    } else $img = "avatar.jpg";
+
+    echo '<img src="public/img/users' . $img . '" width="50px">';
+    echo '<br>';
+
     }else{
         echo '<a href="index.php?c=user&register=1">registrarse</a><br>';
         echo '<a href="index.php?c=user&login=1">iniciar sesión</a><br>';
