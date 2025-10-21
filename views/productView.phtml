@@ -7,7 +7,7 @@
 <?php
  if($_SESSION['user']){
         echo  '<h3>Hola '.$_SESSION['user']->getUsername().'. <a href="index.php?c=user&logout=1">Salir</a></h3><br>
-       <h3><a href="index.php?c=Product&newProduct=1">Crear Producto</a><br></h3>';
+       <h3><a href="index.php?c=products&newProduct=1">Crear Producto</a><br></h3>';
     }else{
         echo '<a href="index.php?c=user&register=1">registrarse</a><br>';
         echo '<a href="index.php?c=user&login=1">iniciar sesión</a><br>';

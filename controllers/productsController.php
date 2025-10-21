@@ -1,6 +1,6 @@
 <?php
 
-// Delete Subject
+// Delete product
 if(isset($_GET['delete'])){
     ProductsRepository::deleteProduct($_GET['delete']);
     header('location:index.php');
@@ -8,20 +8,22 @@ if(isset($_GET['delete'])){
 }
 
 // Add new Product
-if(isset($_POST["name"]) && isset($_POST["description"])){
-    $name = $db->real_escape_string($_POST['name']);
-    $description = $db->real_escape_string($_POST['description']);
-    $stock = $db->real_escape_string($_POST['stock']);
-    $precio = $db->real_escape_string($_POST['precio']);
-    $imagen = $db->real_escape_string($_POST['imagen']);
-    ProductsRepository::addProduct($name, $description, $stock, $precio, $imagen);
-    header('location:index.php');
-    exit();
+if(isset($_GET["createProduct"])){
+    if(isset($_POST["name"]) && isset($_POST["description"]) && isset($_POST["stock"]) && isset($_POST["precio"]) && isset($_POST["imagen"])){
+        $name = $db->real_escape_string($_POST['name']);
+        $description = $db->real_escape_string($_POST['description']);
+        $stock = $db->real_escape_string($_POST['stock']);
+        $precio = $db->real_escape_string($_POST['precio']);
+        $imagen = $db->real_escape_string($_POST['imagen']);
+        ProductsRepository::addProduct($name, $description, $stock, $precio, $imagen);
+        header('location:index.php');
+        exit();
+    }
 }
 
-// Show new Subject form
+// Show new product form
 if(isset($_GET["newProduct"])){
-    require_once 'views/newProduct.phtml';
+    require_once 'views/newProductView.phtml';
     exit();
 }
 
@@ -32,14 +34,21 @@ if(isset($_GET["newProduct"])){
 //     exit();
 //}
 
-// Show product list
 
-$products = ProductsRepository::getProduct(); 
-require_once 'views/productView.phtml';
-exit();
+
+//show login form
+if(isset($_GET['login'])){
+    require_once 'views/loginView.phtml';
+    exit();
+}
 
 //show register form
 if(isset($_GET['register'])){
     require_once 'views/registerView.phtml';
     exit();
 }
+
+// Show product list
+$products = ProductsRepository::getProduct(); 
+require_once 'views/productView.phtml';
+exit();
