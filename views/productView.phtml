@@ -13,9 +13,10 @@
     // Mostramos la imagen y el saludo en la misma línea, dentro del mismo H3
     echo '<h3><img src="public/users/' . $img . '" width="50px" style="vertical-align: middle; margin-right: 10px;">' .
          'Hola '.$_SESSION['user']->getUsername().'. <a href="index.php?c=user&logout=1">Salir</a></h3>';
-    echo '<h3>
-    
-       <a href="index.php?c=products&newProduct=1">Crear Producto</a><br></h3>';
+
+        if ($_SESSION['user']->isAdmin()) {
+       echo '<h3> <a href="index.php?c=products&newProduct=1">Crear Producto</a><br></h3>';
+        }
 
        echo '<a href="index.php?c=user&edit=1">Panel de usuario</a><br>';
 
@@ -37,7 +38,7 @@
             <div style="border: 1px solid #6c6c6cff; padding: 10px; margin: 10px 0;">
                 <h3><?php echo htmlspecialchars($product->getName()); ?></h3>
                 <p><strong>Descripción:</strong> <?php echo htmlspecialchars($product->getDescription()); ?></p>
-                <!-- AQUI PONER LA IMAGEN -->
+                <img src="public/products/<?php echo htmlspecialchars($product->getImagen()); ?>" alt="Imagen del producto" width="200">
                 <!-- Agrega aquí cualquier otra información relevante del producto -->
                 <p><strong>Stock:</strong> <?php echo htmlspecialchars($product->getStock()); ?></p>
                 <p><strong>Precio:</strong> <?php echo htmlspecialchars($product->getPrice()); ?>€</p>
