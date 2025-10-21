@@ -31,9 +31,9 @@ if(isset($_GET["newProduct"])){
 //     exit();
 //}
 
-// Show Subject list
+// Show product list
 else {
     $Products = ProductsRepository::getProduct();
-    require_once 'index.php';
+    require_once 'views/productView.phtml';
     exit();
 }
