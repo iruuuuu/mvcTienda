@@ -1,5 +1,5 @@
 <?php
-class ProductosRepository{
+class ProductsRepository{
         public static function getProductById($idProduct) {
         $db = Connection::connect();
         $q = "SELECT * FROM post WHERE id=" . $idProduct;

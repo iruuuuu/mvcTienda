@@ -2,36 +2,37 @@
 
 // Delete Subject
 if(isset($_GET['delete'])){
-     SubjectRepository::deleteSubject($_GET['delete']);
-     header('location:index.php');
-     exit();
+    ProductsRepository::deleteProduct($_GET['delete']);
+    header('location:index.php');
+    exit();
 }
 
-// Add new Subject
-if(isset($_POST["title"]) && isset($_POST["content"])){
-     $title = $db->real_escape_string($_POST['title']);
-     $content = $db->real_escape_string($_POST['content']);
-     $authorId = $_SESSION['user']->getId();
-     $SubjectId = SubjectRepository::addSubject($title, $content, $authorId);
-     header('location:index.php?c=Subject&id=' . $SubjectId);
-     exit();
+// Add new Product
+if(isset($_POST["name"]) && isset($_POST["description"])){
+    $title = $db->real_escape_string($_POST['name']);
+    $description = $db->real_escape_string($_POST['description']);
+    $price = $db->real_escape_string($_POST['price']);
+    $image = $db->real_escape_string($_POST['image']);
+    ProductsRepository::addProduct($title, $description, $price, $image);
+    header('location:index.php');
+    exit();
 }
 
 // Show new Subject form
-if(isset($_GET["newSubject"])){
-     require_once("views/newSubject.phtml");
-     exit();
+if(isset($_GET["newProduct"])){
+    require_once 'views/newProduct.phtml';
+    exit();
 }
 
 // Show single Subject
 if(isset($_GET['id'])){
-     $Subject = SubjectRepository::getSubjectById($_GET['id']);
-     require_once 'views/showSubject.phtml';
-     exit();
+    $Subject = ProductsRepository::getProductById($_GET['id']);
+    require_once 'views/showSubject.phtml';
+    exit();
 }
 // Show Subject list
 else {
-     $Subjects = SubjectRepository::getSubjects();
-     require_once 'views/mainView.phtml';
-     exit();
+    $Products = ProductsRepository::getProduct();
+    require_once 'views/index.phtml';
+    exit();
 }
