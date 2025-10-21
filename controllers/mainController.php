@@ -4,6 +4,8 @@ require_once('models/User.php');
 require_once('models/Product.php');
 require_once('models/Pedido.php');
 
+require_once('helpers/fileHelper.php');
+
 require_once('models/UserRepository.php');
 require_once('models/ProductsRepository.php');
 require_once('models/PedidoRepository.php');

@@ -37,6 +37,13 @@ class user {
         return $this->rol == 1;
     }
 
+    public function setAvatar($avatar)
+    {
+        if (UserRepository::setAvatar($avatar, $this)) {
+            $this->avatar = $avatar;
+        }
+    }
+
 }
 
 ?>
