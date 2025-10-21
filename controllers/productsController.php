@@ -9,11 +9,12 @@ if(isset($_GET['delete'])){
 
 // Add new Product
 if(isset($_POST["name"]) && isset($_POST["description"])){
-    $title = $db->real_escape_string($_POST['name']);
+    $name = $db->real_escape_string($_POST['name']);
     $description = $db->real_escape_string($_POST['description']);
-    $price = $db->real_escape_string($_POST['price']);
+    $stock = $db->real_escape_string($_POST['stock']);
+    $precio = $db->real_escape_string($_POST['precio']);
     $imagen = $db->real_escape_string($_POST['imagen']);
-    ProductsRepository::addProduct($title, $description, $price, $imagen, $price, $imagen);
+    ProductsRepository::addProduct($name, $description, $stock, $precio, $imagen);
     header('location:index.php');
     exit();
 }
