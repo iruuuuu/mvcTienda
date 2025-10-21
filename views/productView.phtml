@@ -19,6 +19,8 @@
 
        echo '<a href="index.php?c=user&edit=1">Panel de usuario</a><br>';
 
+       echo '<a href="index.php?c=pedido">Carrito de pedidos</a><br>';
+
     }else{
         echo '<a href="index.php?c=user&register=1">registrarse</a><br>';
         echo '<a href="index.php?c=user&login=1">iniciar sesión</a><br>';
@@ -40,7 +42,10 @@
                 <p><strong>Stock:</strong> <?php echo htmlspecialchars($product->getStock()); ?></p>
                 <p><strong>Precio:</strong> <?php echo htmlspecialchars($product->getPrice()); ?>€</p>
                 <?php 
-                if (isset($_SESSION['user']) && is_object($_SESSION['user'])): 
+                if (isset($_SESSION['user']) && is_object($_SESSION['user'])):
+                    
+                     echo '<a href="index.php?c=products&productId=' . $product->getId() . '">Añadir a pedidos</a>';
+
                     if ($_SESSION['user']->isAdmin()):
                 ?>
                     <a href="index.php?delete=<?php echo $product->getId(); ?>" 

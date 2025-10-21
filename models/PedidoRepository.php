@@ -2,7 +2,7 @@
 
 class pedidoRepository{
 
-    public static function getProductosByUserid($userId){
+    public static function getPedidosByUserid($userId){
         $db = connection::connect();
         $q = "SELECT * FROM pedido WHERE userId = $userId";
         $result = $db->query($q);
