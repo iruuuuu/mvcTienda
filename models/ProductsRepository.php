@@ -5,7 +5,7 @@ class ProductsRepository{
         $q = "SELECT * FROM post WHERE id=" . $idProduct;
         $result = $db->query($q);
         if ($row = $result->fetch_assoc()) {
-            return new product($row['id'], $row['name'], $row['description'], $row['stock']);
+            return new product($row['id'], $row['name'], $row['description'], $row['stock'], $row['image'], $row['price']);
         }
         return null;
     }
@@ -24,16 +24,16 @@ public static function getProduct() {
     $result = $db->query($q);
     $products = [];
     while ($row = $result->fetch_assoc()) {
-            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['stock']);
+            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['stock'], $row['image'], $row['price']);
     }
     return $products;
 
 }
 
-public static function addProduct($id, $name, $description, $stock) {
+public static function addProduct($id, $name, $description, $stock, $image, $price) {
     if (self::isUserAdmin()) {
         $db = Connection::connect();
-        $q = "INSERT INTO product  VALUES ( NULL, '" . $name . "', '" . $description . "', '" . $stock . "')";
+        $q = "INSERT INTO product  VALUES ( NULL, '" . $name . "', '" . $description . "', '" . $stock . "', '" . $image . "', '" . $price . "')";
         if ($result = $db->query($q))
             return $db->insert_id;
         else

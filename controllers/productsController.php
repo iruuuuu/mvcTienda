@@ -12,8 +12,8 @@ if(isset($_POST["name"]) && isset($_POST["description"])){
     $title = $db->real_escape_string($_POST['name']);
     $description = $db->real_escape_string($_POST['description']);
     $price = $db->real_escape_string($_POST['price']);
-    $image = $db->real_escape_string($_POST['image']);
-    ProductsRepository::addProduct($title, $description, $price, $image);
+    $imagen = $db->real_escape_string($_POST['imagen']);
+    ProductsRepository::addProduct($title, $description, $price, $imagen, $price, $imagen);
     header('location:index.php');
     exit();
 }
@@ -36,3 +36,9 @@ if(isset($_GET["newProduct"])){
 $products = ProductsRepository::getProduct(); 
 require_once 'views/productView.phtml';
 exit();
+
+//show register form
+if(isset($_GET['register'])){
+    require_once 'views/registerView.phtml';
+    exit();
+}
