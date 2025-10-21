@@ -33,7 +33,7 @@ public static function getProduct() {
 public static function addProduct( $name, $description, $stock, $price, $imagen) {
     if (self::isUserAdmin()) {
         $db = Connection::connect();
-        $q = "INSERT INTO product  VALUES ( NULL, '" . $name . "', '" . $description . "', '" . $stock . "', '" . $price . "', '" . $imagen . "')";
+        $q = "INSERT INTO products  VALUES ( NULL, '" . $name . "', '" . $description . "', '" . $stock . "', '" . $price . "', '" . $imagen . "')";
         if ($result = $db->query($q))
             return $db->insert_id;
         else

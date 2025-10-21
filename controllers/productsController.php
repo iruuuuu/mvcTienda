@@ -10,6 +10,9 @@ if(isset($_GET['delete'])){
 // Add new Product
 if(isset($_GET["createProduct"])){
     if(isset($_POST["name"]) && isset($_POST["description"]) && isset($_POST["stock"]) && isset($_POST["precio"])){
+         if (!isset($_POST['imagen'])){
+            $_POST['imagen'] = 'default.jpg';
+        }
         $name = $db->real_escape_string($_POST['name']);
         $description = $db->real_escape_string($_POST['description']);
         $stock = $db->real_escape_string($_POST['stock']);
