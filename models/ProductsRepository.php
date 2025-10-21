@@ -19,17 +19,15 @@ private static function isUserAdmin() {
 }
 
 public static function getProduct() {
-    if (self::isUserAdmin()) {
-        $db = Connection::connect();
-        $q = 'SELECT * FROM products ORDER BY created_at DESC';
-        $result = $db->query($q);
-        $products = [];
-        while ($row = $result->fetch_assoc()) {
+    $db = Connection::connect();
+    $q = 'SELECT * FROM products';
+    $result = $db->query($q);
+    $products = [];
+    while ($row = $result->fetch_assoc()) {
             $products[] = new Product($row['id'], $row['name'], $row['description'], $row['stock']);
-        }
-        return $products;
     }
-    return [];
+    return $products;
+
 }
 
 public static function addProduct($id, $name, $description, $stock) {
