@@ -5,7 +5,7 @@ class pedido{
     private $productId;
     private $userId;
 
-    public function __construct($id, $productId, $userId){
+    public function __construct($id,$productId, $userId){
         $this->id = $id;
         $this->productId = $productId;
         $this->userId = $userId;
