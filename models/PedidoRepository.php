@@ -14,20 +14,27 @@ class pedidoRepository{
     }
 
     public static function addPedido($productId, $userId){
-        $db = connection::connect();
-        $q = "INSERT INTO pedido (productId, userId) VALUES ($productId, $userId)";
-        if ($result = $db->query($q)) {
-            return $db->insert_id;
+        $db = Connection::connect();
+        $stmt = $db->prepare("INSERT INTO pedido (productId, userId) VALUES (?, ?)");
+        $stmt->bind_param("ii", $productId, $userId);
+        if ($stmt->execute()) {
+            $id = $db->insert_id;
+            $stmt->close();
+            return $id;
         }
+        $stmt->close();
         return false;
     }
 
     public static function deletePedido($id){
-        $db = connection::connect();
-        $q = "DELETE FROM pedido WHERE id = $id";
-        if ($result = $db->query($q)) {
+        $db = Connection::connect();
+        $stmt = $db->prepare("DELETE FROM pedido WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        if ($stmt->execute()) {
+            $stmt->close();
             return true;
         }
+        $stmt->close();
         return false;
     }
 }
