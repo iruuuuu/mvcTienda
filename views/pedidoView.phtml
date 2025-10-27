@@ -35,21 +35,21 @@
     <?php if (isset($pedidos) && count($pedidos) > 0): ?>
         <?php foreach ($pedidos as $pedido): ?>
             <div style="border: 1px solid #6c6c6cff; padding: 10px; margin: 10px 0;">
-                <h3><?php echo htmlspecialchars($pedido.getProductId()->getName()); ?></h3>
+                <h3><?php echo htmlspecialchars( ProductsRepository::getProductById($pedido->getProductId())->getName()); ?></h3>
                 
                 <!-- AQUI PONER LA IMAGEN -->
-                <?php if ($pedido->getImage()): ?>
-                    <img src="public/pedidos/<?php echo htmlspecialchars($pedido->getImage()); ?>" 
-                         alt="<?php echo htmlspecialchars($pedido.getProductId()->getName()); ?>" 
+                <?php if (ProductsRepository::getProductById($pedido->getProductId())->getImagen()): ?>
+                    <img src="public/products/<?php echo htmlspecialchars(ProductsRepository::getProductById($pedido->getProductId())->getImagen()); ?>" 
+                         alt="<?php echo htmlspecialchars(ProductsRepository::getProductById($pedido->getProductId())->getName()); ?>" 
                          width="100px" 
                          style="margin-bottom: 10px;">
                 <?php else: ?>
                     <p>No hay imagen disponible.</p>
                 <?php endif; ?>
                 
-                <p><strong>Descripción:</strong> <?php echo htmlspecialchars($pedido.getProductId()->getDescription()); ?></p>
+                <p><strong>Descripción:</strong> <?php echo htmlspecialchars(ProductsRepository::getProductById($pedido->getProductId())->getDescription()); ?></p>
                 <!-- Agrega aquí cualquier otra información relevante del producto -->
-                <p><strong>Stock:</strong> <?php echo htmlspecialchars($pedido.getProductId()->getStock()); ?></p>
+                <p><strong>Stock:</strong> <?php echo htmlspecialchars(ProductsRepository::getProductById($pedido->getProductId())->getStock()); ?></p>
                 
                     
                 

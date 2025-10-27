@@ -2,10 +2,10 @@
 class ProductsRepository{
         public static function getProductById($idProduct) {
         $db = Connection::connect();
-        $q = "SELECT * FROM post WHERE id=" . $idProduct;
+        $q = "SELECT * FROM products WHERE id=" . $idProduct;
         $result = $db->query($q);
         if ($row = $result->fetch_assoc()) {
-            return new product($row['id'], $row['name'], $row['description'], $row['stock'], $row['imagen'], $row['price']);
+            return new product($row['id'], $row['name'], $row['description'], $row['stock'],$row['precio'], $row['imagen'] );
         }
         return null;
     }
