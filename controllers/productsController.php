@@ -63,13 +63,11 @@ if(isset($_GET['register'])){
     exit();
 }
 
-//añadir producto a "carrito"
+//añadir producto a Pedidos
 if(isset($_GET['productId'])){
     $productId = $_GET['productId'];
     $userId = $_SESSION['user']->getId();
-    // Esto debería ser para añadir al carrito, no directamente a pedidos.
-    // Redirigimos al nuevo controlador de carrito.
-    header('Location: index.php?c=carrito&action=add&id=' . $productId);
+    PedidoRepository::addPedido($productId, $userId);
     header('location:index.php');
     exit();
 }
