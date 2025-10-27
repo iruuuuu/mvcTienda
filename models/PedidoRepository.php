@@ -3,31 +3,42 @@
 class pedidoRepository{
 
     public static function getPedidosByUserid($userId){
-        $db = connection::connect();
-        $q = "SELECT * FROM pedido WHERE userId = $userId";
-        $result = $db->query($q);
-        $productos = [];
-        while($row = $result->fetch_assoc()){
-            $productos[] = new pedido($row['id'], $row['productId'], $row['userId']);
+        $db = Connection::connect();
+        $pedidos = [];
+        $stmt = $db->prepare("SELECT id, productId, userId FROM pedido WHERE userId = ?");
+        $stmt->bind_param("i", $userId);
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            while($row = $result->fetch_assoc()){
+                $pedidos[] = new Pedido($row['id'], $row['productId'], $row['userId']);
+            }
         }
-        return $productos;
+        $stmt->close();
+        return $pedidos;
     }
 
     public static function addPedido($productId, $userId){
-        $db = connection::connect();
-        $q = "INSERT INTO pedido (productId, userId) VALUES ($productId, $userId)";
-        if ($result = $db->query($q)) {
-            return $db->insert_id;
+        $db = Connection::connect();
+        $stmt = $db->prepare("INSERT INTO pedido (productId, userId) VALUES (?, ?)");
+        $stmt->bind_param("ii", $productId, $userId);
+        if ($stmt->execute()) {
+            $id = $db->insert_id;
+            $stmt->close();
+            return $id;
         }
+        $stmt->close();
         return false;
     }
 
     public static function deletePedido($id){
-        $db = connection::connect();
-        $q = "DELETE FROM pedido WHERE id = $id";
-        if ($result = $db->query($q)) {
+        $db = Connection::connect();
+        $stmt = $db->prepare("DELETE FROM pedido WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        if ($stmt->execute()) {
+            $stmt->close();
             return true;
         }
+        $stmt->close();
         return false;
     }
 }
