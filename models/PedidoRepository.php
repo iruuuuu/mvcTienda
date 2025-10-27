@@ -6,11 +6,11 @@ class pedidoRepository{
         $db = connection::connect();
         $q = "SELECT * FROM pedido WHERE userId = $userId";
         $result = $db->query($q);
-        $productos = [];
+        $pedidos = [];
         while($row = $result->fetch_assoc()){
-            $productos[] = new pedido($row['id'], $row['productId'], $row['userId']);
+            $pedidos[] = new pedido($row['id'], $row['productId'], $row['userId']);
         }
-        return $productos;
+        return $pedidos;
     }
 
     public static function addPedido($productId, $userId){
