@@ -3,17 +3,13 @@
 class pedidoRepository{
 
     public static function getPedidosByUserid($userId){
-        $db = Connection::connect();
+        $db = connection::connect();
+        $q = "SELECT * FROM pedido WHERE userId = $userId";
+        $result = $db->query($q);
         $pedidos = [];
-        $stmt = $db->prepare("SELECT id, productId, userId FROM pedido WHERE userId = ?");
-        $stmt->bind_param("i", $userId);
-        if ($stmt->execute()) {
-            $result = $stmt->get_result();
-            while($row = $result->fetch_assoc()){
-                $pedidos[] = new Pedido($row['id'], $row['productId'], $row['userId']);
-            }
+        while($row = $result->fetch_assoc()){
+            $pedidos[] = new pedido($row['id'], $row['productId'], $row['userId']);
         }
-        $stmt->close();
         return $pedidos;
     }
 

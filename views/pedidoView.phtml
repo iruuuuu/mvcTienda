@@ -3,21 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Pedidos</title>
+    <title>Pedidos</title>
+
 </head>
 <body>
-    <a href="index.php">Volver a la tienda</a>
+<?php
+    // Comprobamos si la sesión de usuario está iniciada
+    if(!isset($_SESSION['user'])){
+        header('location:index.php');
+        exit;
+    }
 
-    <h2>Mis Pedidos</h2>
+ // Comprobamos si la sesión de usuario está iniciada y es un objeto
+if(isset($_SESSION['user']) && is_object($_SESSION['user'])){
+        if ($_SESSION['user']->getAvatar()) {
+        $img = $_SESSION['user']->getAvatar();
+    } else $img = "avatar.jpg";
 
+    // Mostramos la imagen y el saludo en la misma línea, dentro del mismo H3
+    echo '<h3><img src="public/users/' . htmlspecialchars($img) . '" width="50px" style="vertical-align: middle; margin-right: 10px;">' .
+        'Hola ' . htmlspecialchars($_SESSION['user']->getUsername()) . '. <a href="index.php?c=user&logout=1">Salir</a></h3>';
+    
+    // Agrupamos los enlaces de navegación en un div para una mejor estructura
+    echo '<div>';
+    echo '<a href="index.php?c=products">Salir</a><br>';
+    echo '</div>';
+    }
+?>
+
+    <h2>Productos</h2>
     <?php if (isset($pedidos) && count($pedidos) > 0): ?>
-        <ul>
         <?php foreach ($pedidos as $pedido): ?>
-            <li>
-                Pedido ID: <?php echo htmlspecialchars($pedido->getId()); ?> - 
-                Producto ID: <?php echo htmlspecialchars($pedido->getProductId()); ?>
-                <?php // Aquí podrías hacer una consulta para obtener el nombre del producto si lo necesitas ?>
-            </li>
+            <div style="border: 1px solid #6c6c6cff; padding: 10px; margin: 10px 0;">
+                <h3><?php echo htmlspecialchars($pedido-getProductId()->getName()); ?></h3>
+                
+                <!-- AQUI PONER LA IMAGEN -->
+                <?php if ($pedido->getImage()): ?>
+                    <img src="public/pedidos/<?php echo htmlspecialchars($pedido->getImage()); ?>" 
+                        alt="<?php echo htmlspecialchars($pedido->getProductId()->getName()); ?>" 
+                        width="100px" 
+                        style="margin-bottom: 10px;">
+                <?php else: ?>
+                    <p>No hay imagen disponible.</p>
+                <?php endif; ?>
+                
+                <p><strong>Descripción:</strong> <?php echo htmlspecialchars($pedido->getProductId()->getDescription()); ?></p>
+                <!-- Agrega aquí cualquier otra información relevante del producto -->
+                <p><strong>Stock:</strong> <?php echo htmlspecialchars($pedido->getProductId()->getStock()); ?></p>
+                
+                    
+                
+            </div>
         <?php endforeach; ?>
         </ul>
     <?php else: ?>

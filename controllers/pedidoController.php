@@ -1,15 +1,7 @@
 <?php
-// Obtener los pedidos del usuario desde la base de datos
-$pedidos = PedidoRepository::getPedidosByUserid($_SESSION['user']->getId());
 
+//show product list
 
-
-// Redirigir si el usuario no está logueado
-if (!isset($_SESSION['user']) || !is_object($_SESSION['user'])) {
-    header('Location: index.php?c=user&login=1');
-    exit();
-}
-
-// Cargar la vista para mostrar los pedidos
+$pedidos = pedidoRepository::getPedidosByUserid($_SESSION['user']->getId() ); 
 require_once 'views/pedidoView.phtml';
 exit();
