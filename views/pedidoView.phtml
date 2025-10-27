@@ -38,7 +38,8 @@
                 <h3><?php echo htmlspecialchars( ProductsRepository::getProductById($pedido->getProductId())->getName()); ?></h3>
                 
                 <!-- AQUI PONER LA IMAGEN -->
-                <?php if (ProductsRepository::getProductById($pedido->getProductId())->getImagen()): ?>
+                <?php if (ProductsRepository::getProductById($pedido->getProductId())->getImagen()):    ?>                 
+                    
                     <img src="public/products/<?php echo htmlspecialchars(ProductsRepository::getProductById($pedido->getProductId())->getImagen()); ?>" 
                          alt="<?php echo htmlspecialchars(ProductsRepository::getProductById($pedido->getProductId())->getName()); ?>" 
                          width="100px" 

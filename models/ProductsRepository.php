@@ -5,7 +5,7 @@ class ProductsRepository{
         $q = "SELECT * FROM products WHERE id=" . $idProduct;
         $result = $db->query($q);
         if ($row = $result->fetch_assoc()) {
-            return new product($row['id'], $row['name'], $row['description'], $row['stock'],$row['precio'], $row['imagen'] );
+            return new product($row['id'], $row['name'], $row['description'], $row['stock'],$row['imagen'],$row['precio'] );
         }
         return null;
     }
