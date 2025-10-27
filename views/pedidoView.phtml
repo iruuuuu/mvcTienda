@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos</title>
 
@@ -15,14 +15,14 @@
     }
 
  // Comprobamos si la sesión de usuario está iniciada y es un objeto
-if(isset($_SESSION['user']) && is_object($_SESSION['user'])){
+ if(isset($_SESSION['user']) && is_object($_SESSION['user'])){
         if ($_SESSION['user']->getAvatar()) {
         $img = $_SESSION['user']->getAvatar();
     } else $img = "avatar.jpg";
 
     // Mostramos la imagen y el saludo en la misma línea, dentro del mismo H3
     echo '<h3><img src="public/users/' . htmlspecialchars($img) . '" width="50px" style="vertical-align: middle; margin-right: 10px;">' .
-        'Hola ' . htmlspecialchars($_SESSION['user']->getUsername()) . '. <a href="index.php?c=user&logout=1">Salir</a></h3>';
+         'Hola ' . htmlspecialchars($_SESSION['user']->getUsername()) . '. <a href="index.php?c=user&logout=1">Salir</a></h3>';
     
     // Agrupamos los enlaces de navegación en un div para una mejor estructura
     echo '<div>';
@@ -35,16 +35,6 @@ if(isset($_SESSION['user']) && is_object($_SESSION['user'])){
     <?php if (isset($pedidos) && count($pedidos) > 0): ?>
         <?php foreach ($pedidos as $pedido): ?>
             <div style="border: 1px solid #6c6c6cff; padding: 10px; margin: 10px 0;">
-<<<<<<< HEAD
-                <h3><?php echo htmlspecialchars($pedido-getProductId()->getName()); ?></h3>
-                
-                <!-- AQUI PONER LA IMAGEN -->
-                <?php if ($pedido->getImage()): ?>
-                    <img src="public/pedidos/<?php echo htmlspecialchars($pedido->getImage()); ?>" 
-                        alt="<?php echo htmlspecialchars($pedido->getProductId()->getName()); ?>" 
-                        width="100px" 
-                        style="margin-bottom: 10px;">
-=======
                 <h3><?php echo htmlspecialchars( ProductsRepository::getProductById($pedido->getProductId())->getName()); ?></h3>
                 
                 <!-- AQUI PONER LA IMAGEN -->
@@ -54,28 +44,20 @@ if(isset($_SESSION['user']) && is_object($_SESSION['user'])){
                          alt="<?php echo htmlspecialchars(ProductsRepository::getProductById($pedido->getProductId())->getName()); ?>" 
                          width="100px" 
                          style="margin-bottom: 10px;">
->>>>>>> e99455c84c9ff0b6c10f6de882f6afb557e63934
                 <?php else: ?>
                     <p>No hay imagen disponible.</p>
                 <?php endif; ?>
                 
-<<<<<<< HEAD
-                <p><strong>Descripción:</strong> <?php echo htmlspecialchars($pedido->getProductId()->getDescription()); ?></p>
-                <!-- Agrega aquí cualquier otra información relevante del producto -->
-                <p><strong>Stock:</strong> <?php echo htmlspecialchars($pedido->getProductId()->getStock()); ?></p>
-=======
                 <p><strong>Descripción:</strong> <?php echo htmlspecialchars(ProductsRepository::getProductById($pedido->getProductId())->getDescription()); ?></p>
                 <!-- Agrega aquí cualquier otra información relevante del producto -->
                 <p><strong>Stock:</strong> <?php echo htmlspecialchars(ProductsRepository::getProductById($pedido->getProductId())->getStock()); ?></p>
->>>>>>> e99455c84c9ff0b6c10f6de882f6afb557e63934
                 
                     
                 
             </div>
         <?php endforeach; ?>
-        </ul>
     <?php else: ?>
-        <p>No tienes pedidos todavía.</p>
+        <p>No hay productos aun.</p>
     <?php endif; ?>
 </body>
 </html>
