@@ -44,7 +44,8 @@ class product {
     public function getPrice() {
         return $this->price;
     }
-
 }
+
+
 
 ?>

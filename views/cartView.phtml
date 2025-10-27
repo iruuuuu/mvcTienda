@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+</head>
+<body>
+    <h2>Carrito de Compras</h2>
+
+    <?php if (empty($cart->getProducts())): ?>
+        <p>Tu carrito está vacío.</p>
+    <?php else: ?>
+        <ul>
+            <?php foreach ($cart->getProducts() as $product): ?>
+                <li>
+                    <?= htmlspecialchars($product->getName()) ?> -
+                    <?= number_format($product->getPrice(), 2) ?> €
+                    <a href="index.php?controller=cart&action=remove&id=<?= $product->getId() ?>">Eliminar</a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+
+        <p><strong>Total:</strong> <?= number_format($cart->getTotal(), 2) ?> €</p>
+        <a href="index.php?controller=cart&action=checkout">Finalizar Compra</a>
+    <?php endif; ?>
+
+</body>
+</html>
